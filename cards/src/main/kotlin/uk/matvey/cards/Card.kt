@@ -2,20 +2,19 @@ package uk.matvey.cards
 
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import uk.matvey.aperol.entity.Entity
+import uk.matvey.persistence.entity.AuditedEntity
 import java.net.URI
 import java.time.Instant
-import java.util.UUID
 import java.util.UUID.randomUUID
 
 data class Card(
-    override val id: UUID,
+    override val id: CardId,
     val type: Type,
     val title: String,
     val url: URI?,
     override val createdAt: Instant,
     override val updatedAt: Instant
-) : Entity<UUID>(id, createdAt, updatedAt) {
+) : AuditedEntity<CardId>(id, createdAt, updatedAt) {
 
     enum class Type {
         URL,
@@ -31,7 +30,7 @@ data class Card(
 
         fun card(type: Type, title: String, url: URI?): Card {
             val instant = Instant.now()
-            return Card(randomUUID(), type, title, url, instant, instant)
+            return Card(CardId(randomUUID()), type, title, url, instant, instant)
         }
     }
 }

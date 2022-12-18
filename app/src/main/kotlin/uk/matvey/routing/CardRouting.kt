@@ -17,6 +17,7 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
 import uk.matvey.cards.Card
 import uk.matvey.cards.CardCommands
+import uk.matvey.cards.CardId
 import uk.matvey.cards.CardQueries
 import java.net.URI
 import java.util.UUID
@@ -40,12 +41,12 @@ fun Route.cardRouting(cardQueries: CardQueries, cardCommands: CardCommands) {
         route("/{id}") {
             get {
                 val id = requireNotNull(call.parameters["id"])
-                cardQueries.find(UUID.fromString(id))?.let { card ->
+                cardQueries.find(CardId(UUID.fromString(id)))?.let { card ->
                     call.respond(card.toJson())
                 }
             }
             patch {
-                val id = UUID.fromString(requireNotNull(call.parameters["id"]))
+                val id = CardId(UUID.fromString(requireNotNull(call.parameters["id"])))
                 val payload = parseToJsonElement(call.receiveText()).jsonObject
                 cardCommands.update(
                     id,

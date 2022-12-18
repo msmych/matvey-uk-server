@@ -1,9 +1,9 @@
-package uk.matvey.aperol.jooq
+package uk.matvey.persistence.jooq
 
 import org.jooq.Record
 import java.time.Instant
 
-interface AuditedRecord<R : Record> : Record {
+interface AuditedEntityRecord<ID : Comparable<ID>, R : Record> : EntityRecord<ID, R>, Record {
 
     fun getCreatedAt(): Instant
 

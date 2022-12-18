@@ -11,7 +11,7 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import mu.KotlinLogging
-import uk.matvey.aperol.jooq.JooqRepo
+import uk.matvey.persistence.jooq.JooqRepo
 import uk.matvey.cards.CardCommands
 import uk.matvey.cards.CardQueries
 import uk.matvey.cards.CardRepo

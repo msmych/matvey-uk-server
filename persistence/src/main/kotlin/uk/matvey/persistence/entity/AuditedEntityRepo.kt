@@ -1,43 +1,42 @@
-package uk.matvey.aperol.entity
+package uk.matvey.persistence.entity
 
 import org.jooq.Condition
 import org.jooq.OrderField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.impl.DSL.noCondition
-import uk.matvey.aperol.jooq.EntityRecord
-import uk.matvey.aperol.jooq.IdRepo
-import uk.matvey.aperol.jooq.JooqRepo
-import uk.matvey.aperol.jooq.JooqRepo.Companion.DEFAULT_LIMIT
+import uk.matvey.persistence.jooq.AuditedEntityRecord
+import uk.matvey.persistence.jooq.EntityRepo
+import uk.matvey.persistence.jooq.JooqRepo
+import uk.matvey.persistence.jooq.JooqRepo.Companion.DEFAULT_LIMIT
+import java.time.Clock
 import java.time.Instant
 
-abstract class EntityRepo<E : Entity<ID>, R : EntityRecord<R, ID>, ID : Comparable<ID>>(
+abstract class AuditedEntityRepo<
+        ID : Entity.Id<RID>,
+        E : AuditedEntity<ID>,
+        RID : Comparable<RID>,
+        R : AuditedEntityRecord<RID, R>
+        >(
     private val jooqRepo: JooqRepo,
     private val table: Table<R>,
-    private val idField: TableField<R, ID>,
+    private val idField: TableField<R, RID>,
     private val updatedAtField: TableField<R, Instant>,
-) : IdRepo<R, ID>(jooqRepo, table, idField) {
+    private val clock: Clock = Clock.systemUTC()
+) : EntityRepo<ID, E, RID, R>(jooqRepo, table, idField) {
 
     fun add(entity: E): E {
-        val instant = Instant.now()
+        val instant = clock.instant()
         return jooqRepo.add(table, entity.toRecord().setCreatedAt(instant).setUpdatedAt(instant)).toEntity()
     }
 
     fun update(entity: E): E {
         return jooqRepo.update(
             table,
-            entity.toRecord().setUpdatedAt(Instant.now()),
-            idField.eq(entity.id).and(updatedAtField.eq(entity.updatedAt))
+            entity.toRecord().setUpdatedAt(clock.instant()),
+            idField.eq(entity.id.value).and(updatedAtField.eq(entity.updatedAt))
         )
             .toEntity()
-    }
-
-    fun find(id: ID): E? {
-        return findById(id)?.toEntity()
-    }
-
-    fun get(id: ID): E {
-        return getById(id).toEntity()
     }
 
     fun findAllWhere(
@@ -47,8 +46,4 @@ abstract class EntityRepo<E : Entity<ID>, R : EntityRecord<R, ID>, ID : Comparab
     ): Collection<E> {
         return jooqRepo.findAllWhere(table, condition, orderBy, limit).map { it.toEntity() }
     }
-
-    abstract fun E.toRecord(): R
-
-    abstract fun R.toEntity(): E
 }

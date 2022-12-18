@@ -1,4 +1,4 @@
-package uk.matvey.aperol.jooq
+package uk.matvey.persistence.jooq
 
 import org.jooq.Converter
 import java.sql.Timestamp

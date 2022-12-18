@@ -2,7 +2,6 @@ package uk.matvey.cards
 
 import uk.matvey.cards.Card.Companion.card
 import java.net.URI
-import java.util.UUID
 
 class CardCommands(private val repo: CardRepo) {
 
@@ -10,7 +9,7 @@ class CardCommands(private val repo: CardRepo) {
         return repo.add(card(type, title, url))
     }
 
-    fun update(id: UUID, title: String?, url: URI?): Card? {
+    fun update(id: CardId, title: String?, url: URI?): Card? {
         val card = repo.get(id)
         return card.copy(
             title = title ?: card.title,
