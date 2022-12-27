@@ -2,7 +2,7 @@ package uk.matvey.cards
 
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import uk.matvey.persistence.entity.AuditedEntity
+import uk.matvey.support.persistence.entity.AuditedEntity
 import java.net.URI
 import java.time.Instant
 import java.util.UUID.randomUUID

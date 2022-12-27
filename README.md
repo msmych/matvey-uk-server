@@ -5,8 +5,10 @@ APIs for [matvey.uk](https://matvey.uk) website
 ### App
 * [Ktor](https://ktor.io/)
 
-### Aperol
-Lightweight persistence framework
+### Support
+* JSON accessors
+* Persistence (jOOQ, entities)
+* Server (Ktor)
 
 ### DB schema
 * [Palantir](https://github.com/palantir/gradle-docker) to run PG container

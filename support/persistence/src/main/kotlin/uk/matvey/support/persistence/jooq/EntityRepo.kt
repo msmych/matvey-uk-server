@@ -1,9 +1,9 @@
-package uk.matvey.persistence.jooq
+package uk.matvey.support.persistence.jooq
 
 import org.jooq.Record
 import org.jooq.Table
 import org.jooq.TableField
-import uk.matvey.persistence.entity.Entity
+import uk.matvey.support.persistence.entity.Entity
 
 abstract class EntityRepo<ID : Entity.Id<RID>, E : Entity<ID>, RID : Comparable<RID>, R : Record>(
     private val jooqRepo: JooqRepo,
