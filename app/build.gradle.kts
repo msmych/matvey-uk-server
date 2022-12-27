@@ -6,10 +6,8 @@ val ktorVersion: String by project
 val hikariCpVersion: String by project
 
 dependencies {
-    implementation("io.ktor:ktor-server-core:$ktorVersion")
-    implementation("io.ktor:ktor-server-netty:$ktorVersion")
-    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    implementation(project(":support:server"))
+
     implementation("com.zaxxer:HikariCP:$hikariCpVersion")
 
     implementation(project(":db-schema"))

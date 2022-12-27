@@ -1,14 +1,14 @@
-package uk.matvey.persistence.entity
+package uk.matvey.support.persistence.entity
 
 import org.jooq.Condition
 import org.jooq.OrderField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.impl.DSL.noCondition
-import uk.matvey.persistence.jooq.AuditedEntityRecord
-import uk.matvey.persistence.jooq.EntityRepo
-import uk.matvey.persistence.jooq.JooqRepo
-import uk.matvey.persistence.jooq.JooqRepo.Companion.DEFAULT_LIMIT
+import uk.matvey.support.persistence.jooq.AuditedEntityRecord
+import uk.matvey.support.persistence.jooq.EntityRepo
+import uk.matvey.support.persistence.jooq.JooqRepo
+import uk.matvey.support.persistence.jooq.JooqRepo.Companion.DEFAULT_LIMIT
 import java.time.Clock
 import java.time.Instant
 

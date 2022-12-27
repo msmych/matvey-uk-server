@@ -11,11 +11,11 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import mu.KotlinLogging
-import uk.matvey.persistence.jooq.JooqRepo
 import uk.matvey.cards.CardCommands
 import uk.matvey.cards.CardQueries
 import uk.matvey.cards.CardRepo
 import uk.matvey.routing.cardRouting
+import uk.matvey.support.persistence.jooq.JooqRepo
 
 class App {
     val greeting: String

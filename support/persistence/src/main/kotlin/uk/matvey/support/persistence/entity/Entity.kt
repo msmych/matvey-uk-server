@@ -1,4 +1,4 @@
-package uk.matvey.persistence.entity
+package uk.matvey.support.persistence.entity
 
 abstract class Entity<ID : Entity.Id<*>>(
     open val id: ID

@@ -1,4 +1,4 @@
-package uk.matvey.persistence.jooq
+package uk.matvey.support.persistence.jooq
 
 import org.jooq.Record
 

@@ -31,6 +31,13 @@ subprojects {
         implementation("io.github.microutils:kotlin-logging-jvm:$microutilsVersion")
         implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
+        when (project.name) {
+            "support" -> {}
+            else -> {
+                implementation(project(":support"))
+            }
+        }
+
         testImplementation("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
         testImplementation("io.mockk:mockk:$mockkVersion")
         testImplementation("org.assertj:assertj-core:$assertJVersion")

@@ -1,4 +1,4 @@
-package uk.matvey.persistence.entity
+package uk.matvey.support.persistence.entity
 
 import java.time.Instant
 

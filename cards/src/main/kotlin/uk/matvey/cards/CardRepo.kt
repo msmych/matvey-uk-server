@@ -3,8 +3,8 @@ package uk.matvey.cards
 import org.jooq.generated.Tables.CARD
 import org.jooq.generated.tables.records.CardRecord
 import uk.matvey.cards.Card.Type
-import uk.matvey.persistence.entity.AuditedEntityRepo
-import uk.matvey.persistence.jooq.JooqRepo
+import uk.matvey.support.persistence.entity.AuditedEntityRepo
+import uk.matvey.support.persistence.jooq.JooqRepo
 import java.net.URI
 import java.util.UUID
 

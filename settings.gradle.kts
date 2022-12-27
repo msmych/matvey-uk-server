@@ -1,7 +1,8 @@
 rootProject.name = "matvey-uk-server"
 include(
     "db-schema",
-    "persistence",
+    "support:persistence",
+    "support:server",
     "cards",
     "app"
 )

@@ -15,7 +15,7 @@ val jooqVersion: String by project
 val postgresVersion: String by project
 
 dependencies {
-    api(project(":persistence"))
+    api(project(":support:persistence"))
     implementation("org.postgresql:postgresql:$postgresVersion")
     jooqGenerator("org.postgresql:postgresql:$postgresVersion")
 }
@@ -68,7 +68,7 @@ jooq {
                         forcedTypes.add(
                             ForcedType().apply {
                                 userType = "java.time.Instant"
-                                converter = "uk.matvey.persistence.jooq.InstantConverter"
+                                converter = "uk.matvey.support.persistence.jooq.InstantConverter"
                                 includeExpression = ".*.CREATED_AT|.*.UPDATED_AT"
                             }
                         )
@@ -76,7 +76,7 @@ jooq {
                     strategy.apply {
                         matchers = Matchers().withTables(
                             MatchersTableType()
-                                .withRecordImplements("uk.matvey.persistence.jooq.AuditedEntityRecord<UUID, CardRecord>")
+                                .withRecordImplements("uk.matvey.support.persistence.jooq.AuditedEntityRecord<UUID, CardRecord>")
                                 .withExpression("card")
                         )
                     }
